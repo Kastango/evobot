@@ -17,7 +17,7 @@ module.exports = {
 
     if (!args.length)
       return message
-        .reply(i18n.__mf("playlist.usageReply", { prefix: message.client.prefix }))
+        .reply(i18n.__mf("playlist.usagesReply", { prefix: message.client.prefix }))
         .catch(console.error);
     if (!channel) return message.reply(i18n.__("playlist.errorNotChannel")).catch(console.error);
 
@@ -69,7 +69,7 @@ module.exports = {
       }
     } else {
       try {
-        const results = await youtube.searchPlaylists(search, 1, { part: "snippet" });
+        const results = await youtube.searchPlaylists(search, 1, { part: "id" });
         playlist = results[0];
         videos = await playlist.getVideos(MAX_PLAYLIST_SIZE, { part: "snippet" });
       } catch (error) {
